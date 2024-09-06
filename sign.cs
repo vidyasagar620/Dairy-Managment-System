@@ -31,11 +31,12 @@ namespace Dairy_Managment_System
                 try
                 {
                     conn.Open();
+
                     SqlCommand cmd = new SqlCommand("INSERT INTO [Signup] (Fname, Email, Password ,Cpassword) VALUES (@Value1, @Value2, @Value3 ,@Value4)", conn);
-                    cmd.Parameters.AddWithValue("@Value3", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@Value1", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@Value2", textBox3.Text);
-                    cmd.Parameters.AddWithValue("@Value3", textBox4.Text);
+                    cmd.Parameters.AddWithValue("@Value1", textBox1.Text);
+                    cmd.Parameters.AddWithValue("@Value2", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@Value3", textBox3.Text);
+                    cmd.Parameters.AddWithValue("@Value4", textBox4.Text);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Record inserted successfully");
@@ -47,7 +48,7 @@ namespace Dairy_Managment_System
                     MessageBox.Show("Error: " + ex.Message);
 
                 }
-
+                conn .Close();
             }
         }
     }
