@@ -26,30 +26,65 @@ namespace Dairy_Managment_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\VIDYA SAGAR YADAV\OneDrive\Documents\dairy management system.mdf"";Integrated Security=True;Connect Timeout=30;Encrypt=True"))
+            string fname = textBoxFname.Text;
+            string email = textBoxEmail.Text;
+            string password = textBoxPassword.Text;
+            string confirmPassword = textBoxConfirmPassword.Text;
+
+            // Validate inputs
+            if (string.IsNullOrEmpty(fname) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("Please fill all the fields.");
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match.");
+                return;
+            }
+
+            // Database connection string (adjust as per your local setup)
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\VIDYA SAGAR YADAV\OneDrive\Documents\dairy management system.mdf"";Integrated Security=True;Connect Timeout=30;Encrypt=False";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [Signup] (Fname, Email, Password ,Cpassword) VALUES (@Value1, @Value2, @Value3 ,@Value4)", conn);
-                    cmd.Parameters.AddWithValue("@Value1", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@Value2", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@Value3", textBox3.Text);
-                    cmd.Parameters.AddWithValue("@Value4", textBox4.Text);
+                    // Insert query with parameters
+                    string query = "INSERT INTO [Signup] (Fname, Email, Password, Cpassword) VALUES (@fname, @Email, @Password, @Cpassword)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
+                    // Bind parameters
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Cpassword", confirmPassword);
+
+                    // Execute the query
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record inserted successfully");
+                    MessageBox.Show("Sign-Up successful!");
 
-
+                    // Clear the form after successful submission
+                    ClearForm();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
-
                 }
-                conn .Close();
             }
+        }
+
+        // Method to clear the form fields
+        private void ClearForm()
+        {
+            textBoxFname.Clear();
+            textBoxEmail.Clear();
+            textBoxPassword.Clear();
+            textBoxConfirmPassword.Clear();
         }
     }
 }
+        
