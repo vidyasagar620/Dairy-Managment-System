@@ -22,6 +22,7 @@ namespace Dairy_Managment_System
         {
             sign s=new sign();
             s.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,10 +57,10 @@ namespace Dairy_Managment_System
                     if (count == 1)
                     {
                         MessageBox.Show("Login successful!");
-                        // Redirect to another form, like the main dashboard
-                       // DashboardForm dashboard = new DashboardForm();
-                      //  dashboard.Show();
-                      //  this.Hide();
+                       // Redirect to another form, like the main dashboard
+                        Home dashboard = new Home();
+                        dashboard.Show();
+                       this.Hide();
                     }
                     else
                     {

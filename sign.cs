@@ -22,6 +22,7 @@ namespace Dairy_Managment_System
         {
             Form1 F = new Form1();
             F.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
