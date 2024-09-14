@@ -83,6 +83,16 @@ namespace Dairy_Managment_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leon_ephraim_AxoNnnH1Y98_unsplash1 {
+            get {
+                object obj = ResourceManager.GetObject("leon-ephraim-AxoNnnH1Y98-unsplash1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ryan_song_0ZN_fZOyV7c_unsplash {
             get {
                 object obj = ResourceManager.GetObject("ryan-song-0ZN-fZOyV7c-unsplash", resourceCulture);

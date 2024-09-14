@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Dairy_Managment_System
 {
-    public partial class Home : Form
+    public partial class Form4 : Form
     {
-        public Home()
+        public Form4()
         {
             InitializeComponent();
-        }
-
-        private void nEWCUSTOMERToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NewCustomer n = new NewCustomer();
-            n.Show();
-            this.Hide();
         }
     }
 }
