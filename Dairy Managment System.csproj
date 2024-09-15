@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer Order.Designer.cs">
+      <DependentUpon>Customer Order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="sign.Designer.cs">
       <DependentUpon>sign.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Customer Order.resx">
+      <DependentUpon>Customer Order.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\leon-ephraim-AxoNnnH1Y98-unsplash1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leon-ephraim-AxoNnnH1Y98-unsplash2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
