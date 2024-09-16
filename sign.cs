@@ -67,6 +67,10 @@ namespace Dairy_Managment_System
                     // Execute the query
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Sign-Up successful!");
+                    // Redirect to another form, like the main dashboard
+                    Form1 dashboard = new Form1();
+                    dashboard.Show();
+                    this.Hide();
 
                     // Clear the form after successful submission
                     ClearForm();

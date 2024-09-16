@@ -51,12 +51,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.AddressBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PinBox = new System.Windows.Forms.TextBox();
+            this.EmailBox = new System.Windows.Forms.TextBox();
+            this.MobileBox = new System.Windows.Forms.TextBox();
+            this.NameBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@
             // nEWCUSTOMERToolStripMenuItem
             // 
             this.nEWCUSTOMERToolStripMenuItem.Name = "nEWCUSTOMERToolStripMenuItem";
-            this.nEWCUSTOMERToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.nEWCUSTOMERToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.nEWCUSTOMERToolStripMenuItem.Text = "NEW CUSTOMER ";
             // 
             // customerToolStripMenuItem
@@ -110,20 +110,20 @@
             // nEWCUSTOMERToolStripMenuItem1
             // 
             this.nEWCUSTOMERToolStripMenuItem1.Name = "nEWCUSTOMERToolStripMenuItem1";
-            this.nEWCUSTOMERToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.nEWCUSTOMERToolStripMenuItem1.Size = new System.Drawing.Size(209, 26);
             this.nEWCUSTOMERToolStripMenuItem1.Text = "NEW CUSTOMER ";
             this.nEWCUSTOMERToolStripMenuItem1.Click += new System.EventHandler(this.nEWCUSTOMERToolStripMenuItem1_Click);
             // 
             // cUSTOMBERORDERToolStripMenuItem
             // 
             this.cUSTOMBERORDERToolStripMenuItem.Name = "cUSTOMBERORDERToolStripMenuItem";
-            this.cUSTOMBERORDERToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cUSTOMBERORDERToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.cUSTOMBERORDERToolStripMenuItem.Text = "CUSTOMER Order";
             // 
             // customerBillToolStripMenuItem
             // 
             this.customerBillToolStripMenuItem.Name = "customerBillToolStripMenuItem";
-            this.customerBillToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.customerBillToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.customerBillToolStripMenuItem.Text = "Customer Bill";
             // 
             // sUPPLIERToolStripMenuItem
@@ -214,12 +214,12 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.AddressBox);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.PinBox);
+            this.panel1.Controls.Add(this.EmailBox);
+            this.panel1.Controls.Add(this.MobileBox);
+            this.panel1.Controls.Add(this.NameBox);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -247,6 +247,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "SAVE";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -257,12 +258,12 @@
             this.button1.Text = "NEW";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // AddressBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(82, 210);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(341, 22);
-            this.textBox5.TabIndex = 10;
+            this.AddressBox.Location = new System.Drawing.Point(82, 210);
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(341, 22);
+            this.AddressBox.TabIndex = 10;
             // 
             // label6
             // 
@@ -273,33 +274,33 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Address";
             // 
-            // textBox4
+            // PinBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(282, 161);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(141, 22);
-            this.textBox4.TabIndex = 8;
+            this.PinBox.Location = new System.Drawing.Point(282, 161);
+            this.PinBox.Name = "PinBox";
+            this.PinBox.Size = new System.Drawing.Size(141, 22);
+            this.PinBox.TabIndex = 8;
             // 
-            // textBox3
+            // EmailBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(82, 155);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(127, 22);
-            this.textBox3.TabIndex = 7;
+            this.EmailBox.Location = new System.Drawing.Point(82, 155);
+            this.EmailBox.Name = "EmailBox";
+            this.EmailBox.Size = new System.Drawing.Size(127, 22);
+            this.EmailBox.TabIndex = 7;
             // 
-            // textBox2
+            // MobileBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(285, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(138, 22);
-            this.textBox2.TabIndex = 6;
+            this.MobileBox.Location = new System.Drawing.Point(285, 90);
+            this.MobileBox.Name = "MobileBox";
+            this.MobileBox.Size = new System.Drawing.Size(138, 22);
+            this.MobileBox.TabIndex = 6;
             // 
-            // textBox1
+            // NameBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(127, 22);
-            this.textBox1.TabIndex = 5;
+            this.NameBox.Location = new System.Drawing.Point(82, 90);
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(127, 22);
+            this.NameBox.TabIndex = 5;
             // 
             // label5
             // 
@@ -324,9 +325,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(285, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 16);
+            this.label3.Size = new System.Drawing.Size(69, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Mobil No";
+            this.label3.Text = "Mobile No";
             // 
             // label2
             // 
@@ -395,11 +396,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox PinBox;
+        private System.Windows.Forms.TextBox EmailBox;
+        private System.Windows.Forms.TextBox MobileBox;
+        private System.Windows.Forms.TextBox NameBox;
+        private System.Windows.Forms.TextBox AddressBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
