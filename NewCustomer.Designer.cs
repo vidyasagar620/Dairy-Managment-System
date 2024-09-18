@@ -138,14 +138,14 @@
             // supplierDetailToolStripMenuItem
             // 
             this.supplierDetailToolStripMenuItem.Name = "supplierDetailToolStripMenuItem";
-            this.supplierDetailToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            this.supplierDetailToolStripMenuItem.Text = "Supplier Detail";
+            this.supplierDetailToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.supplierDetailToolStripMenuItem.Text = "SUPPLIER DETAIL";
             // 
             // supplierOrderToolStripMenuItem
             // 
             this.supplierOrderToolStripMenuItem.Name = "supplierOrderToolStripMenuItem";
-            this.supplierOrderToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            this.supplierOrderToolStripMenuItem.Text = "Supplier Order";
+            this.supplierOrderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.supplierOrderToolStripMenuItem.Text = "SUPPLIER ORDER";
             // 
             // pRODUCTToolStripMenuItem
             // 
