@@ -36,6 +36,7 @@ namespace Dairy_Managment_System
                 MessageBox.Show("Please enter both email and password.");
                 return;
             }
+            //jnhyub
 
             // Database connection string (adjust path as per your environment)
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\VIDYA SAGAR YADAV\OneDrive\Documents\dairy management system.mdf"";Integrated Security=True;Connect Timeout=30;Encrypt=False";
