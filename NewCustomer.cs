@@ -80,6 +80,12 @@ namespace Dairy_Managment_System
             AddressBox.Clear();
         }
 
+        private void cUSTOMBERORDERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Customer_Order cuo = new Customer_Order();
+            cuo.Show();
+            this.Hide();
+        }
     }
 }
 
