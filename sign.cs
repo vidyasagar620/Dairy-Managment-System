@@ -25,71 +25,81 @@ namespace Dairy_Managment_System
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LoadRoles()
         {
-            string fname = textBoxFname.Text;
-            string email = textBoxEmail.Text;
-            string password = textBoxPassword.Text;
-            string confirmPassword = textBoxConfirmPassword.Text;
-
-            // Validate inputs
-            if (string.IsNullOrEmpty(fname) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
-            {
-                MessageBox.Show("Please fill all the fields.");
-                return;
-            }
-
-            if (password != confirmPassword)
-            {
-                MessageBox.Show("Passwords do not match.");
-                return;
-            }
-
-            // Database connection string (adjust as per your local setup)
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\VIDYA SAGAR YADAV\OneDrive\Documents\dairy management system.mdf"";Integrated Security=True;Connect Timeout=30;Encrypt=False";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-
-                    // Insert query with parameters
-                    string query = "INSERT INTO [Signup] (Fname, Email, Password, Cpassword) VALUES (@fname, @Email, @Password, @Cpassword)";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-
-                    // Bind parameters
-                    cmd.Parameters.AddWithValue("@fname", fname);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    cmd.Parameters.AddWithValue("@Cpassword", confirmPassword);
-
-                    // Execute the query
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Sign-Up successful!");
-                    // Redirect to another form, like the main dashboard
-                    Form1 dashboard = new Form1();
-                    dashboard.Show();
-                    this.Hide();
-
-                    // Clear the form after successful submission
-                    ClearForm();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
-            }
+            cmbRole.Items.Add("Admin");
+            cmbRole.Items.Add("Supplier");
+            cmbRole.SelectedIndex = 0; // Default to Admin
         }
 
-        // Method to clear the form fields
-        private void ClearForm()
+        private void button1_Click(object sender, EventArgs e)
         {
-            textBoxFname.Clear();
-            textBoxEmail.Clear();
-            textBoxPassword.Clear();
-            textBoxConfirmPassword.Clear();
+                if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text) || cmbRole.SelectedItem == null)
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                string hashedPassword = HashPassword(txtPassword.Text); // Hash the password
+
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\VIDYA SAGAR YADAV\\OneDrive\\Documents\\dairy management system.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=False";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("spUserSignUp", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Add the necessary parameters
+                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@Role", cmbRole.SelectedItem.ToString());
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Registration successful.");
+
+                        // Open the Admin Dashboard if the role is Admin
+                        if (cmbRole.SelectedItem.ToString() == "Admin")
+                        {
+                            AdminDashboard adminDashboard = new AdminDashboard();
+                            this.Hide(); // Hide the sign-up form
+                            adminDashboard.Show(); // Show the Admin Dashboard
+                        }
+                        else
+                        {
+                            // Handle other roles (e.g., Supplier)
+                            MessageBox.Show("You have been registered as a Supplier.");
+                        Form1 s = new Form1();
+                        s.Show();
+                        this.Hide();
+                    }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        
+
+            private string HashPassword(string password)
+        {
+            using (System.Security.Cryptography.SHA256 sha256Hash = System.Security.Cryptography.SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                var builder = new System.Text.StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }
-        

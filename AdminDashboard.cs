@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Dairy_Managment_System
 {
-    public partial class Form4 : Form
+    public partial class AdminDashboard : Form
     {
-        public Form4()
+        public AdminDashboard()
         {
             InitializeComponent();
         }

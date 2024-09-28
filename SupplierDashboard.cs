@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Dairy_Managment_System
 {
-    public partial class Form2 : Form
+    public partial class SupplierDashboard : Form
     {
-        public Form2()
+        public SupplierDashboard()
         {
             InitializeComponent();
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
