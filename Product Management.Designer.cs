@@ -1,6 +1,6 @@
 ﻿namespace Dairy_Managment_System
 {
-    partial class SupplierDashboard
+    partial class Product_Management
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,18 @@
         {
             this.SuspendLayout();
             // 
-            // SupplierDashboard
+            // Product_Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Dairy_Managment_System.Properties.Resources.leon_ephraim_AxoNnnH1Y98_unsplash2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1227, 756);
-            this.Name = "SupplierDashboard";
-            this.Text = "SupplierDashboard";
-//            this.Load += new System.EventHandler(this.SupplierDashboard_Load);
+            this.ClientSize = new System.Drawing.Size(1216, 748);
+            this.MaximizeBox = false;
+            this.Name = "Product_Management";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Product_Management";
             this.ResumeLayout(false);
 
         }

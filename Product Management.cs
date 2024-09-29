@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,9 +10,11 @@ using System.Windows.Forms;
 
 namespace Dairy_Managment_System
 {
-    public partial class SupplierDashboard : Form
+    public partial class Product_Management : Form
     {
+        public Product_Management()
+        {
+            InitializeComponent();
+        }
     }
-   
 }
-   
