@@ -34,59 +34,80 @@ namespace Dairy_Managment_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-                if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text) || cmbRole.SelectedItem == null)
+                // Validate if username and password are not empty
+                if (string.IsNullOrEmpty(txtUsername.Text))
                 {
-                    MessageBox.Show("Please fill in all fields.");
+                    MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUsername.Focus();
                     return;
                 }
 
-                string hashedPassword = HashPassword(txtPassword.Text); // Hash the password
+                if (string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    MessageBox.Show("Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPassword.Focus();
+                    return;
+                }
 
-                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\VIDYA SAGAR YADAV\\OneDrive\\Documents\\dairy management system.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=False";
+                // Ensure password meets certain security criteria (e.g., at least 6 characters)
+                if (txtPassword.Text.Length < 6)
+                {
+                    MessageBox.Show("Password must be at least 6 characters long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPassword.Focus();
+                    return;
+                }
 
+                // Ensure the role is selected
+                if (cmbRole.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a role (Admin or Supplier).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbRole.Focus();
+                    return;
+                }
+
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\VIDYA SAGAR YADAV\\OneDrive\\Documents\\dairy management system.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=False"; // Update with your connection string
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    try
-                    {
-                        SqlCommand cmd = new SqlCommand("spUserSignUp", conn);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
 
-                        // Add the necessary parameters
-                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                        cmd.Parameters.AddWithValue("@Role", cmbRole.SelectedItem.ToString());
+                    // Check if the username already exists
+                    string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                    checkCmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    int userExists = (int)checkCmd.ExecuteScalar();
 
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Registration successful.");
+                    if (userExists > 0)
+                    {
+                        MessageBox.Show("Username is already taken. Please choose another.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUsername.Focus();
+                        return;
+                    }
 
-                        // Open the Admin Dashboard if the role is Admin
-                        if (cmbRole.SelectedItem.ToString() == "Admin")
-                        {
-                            AdminDashboard adminDashboard = new AdminDashboard();
-                            this.Hide(); // Hide the sign-up form
-                            adminDashboard.Show(); // Show the Admin Dashboard
-                        }
-                        else
-                        {
-                            // Handle other roles (e.g., Supplier)
-                            MessageBox.Show("You have been registered as a Supplier.");
-                        Form1 s = new Form1();
-                        s.Show();
-                        this.Hide();
-                    }
-                    }
-                    catch (Exception ex)
+                    // If the username is unique, insert the new user
+                    string hashedPassword = HashPassword(txtPassword.Text); // Hash the password
+                    string insertQuery = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, @Role)";
+                    SqlCommand cmd = new SqlCommand(insertQuery, conn);
+
+                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                    cmd.Parameters.AddWithValue("@Role", cmbRole.SelectedItem.ToString());
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
                     {
-                        MessageBox.Show("An error occurred: " + ex.Message);
+                        MessageBox.Show("Signup successful. You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close(); // Close signup form and redirect to login
+                         Form1 form1 = new Form1();
+                         form1.Show();
+                         this.Hide();
                     }
-                    finally
+                    else
                     {
-                        conn.Close();
+                        MessageBox.Show("Error occurred during signup.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-        
+
 
             private string HashPassword(string password)
         {

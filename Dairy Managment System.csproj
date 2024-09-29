@@ -67,12 +67,27 @@
     <Compile Include="sign.Designer.cs">
       <DependentUpon>sign.cs</DependentUpon>
     </Compile>
+    <Compile Include="Supplier Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier Management.Designer.cs">
+      <DependentUpon>Supplier Management.cs</DependentUpon>
+    </Compile>
     <Compile Include="SupplierDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SupplierDashboard.Designer.cs">
       <DependentUpon>SupplierDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Management.Designer.cs">
+      <DependentUpon>User Management.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +103,12 @@
     </Compile>
     <EmbeddedResource Include="sign.resx">
       <DependentUpon>sign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier Management.resx">
+      <DependentUpon>Supplier Management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Management.resx">
+      <DependentUpon>User Management.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

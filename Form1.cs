@@ -43,65 +43,60 @@ namespace Dairy_Managment_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
-            {
-                MessageBox.Show("Please fill in both username and password.");
-                return;
-            }
-
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\VIDYA SAGAR YADAV\\OneDrive\\Documents\\dairy management system.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=False";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
+                // Validate if username and password are not empty
+                if (string.IsNullOrEmpty(txtUsername.Text))
                 {
-                    // Get the selected role (Admin or Supplier)
-                    string role = cmbRole.SelectedItem.ToString();
+                    MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUsername.Focus();
+                    return;
+                }
 
-                    // Prepare SQL command based on the selected role
-                    SqlCommand cmd = new SqlCommand("SELECT Username FROM Users WHERE Username = @Username AND Password = @Password AND Role = @Role", conn);
-                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(txtPassword.Text)); // Hash the password before checking
-                    cmd.Parameters.AddWithValue("@Role", role); // Role filter (Admin or Supplier)
+                if (string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    MessageBox.Show("Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPassword.Focus();
+                    return;
+                }
 
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\VIDYA SAGAR YADAV\\OneDrive\\Documents\\dairy management system.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=False"; // Update with your connection string
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
                     conn.Open();
-                    var result = cmd.ExecuteScalar(); // Execute the command and get the result
 
-                    if (result != null)
+                    // SQL Query to retrieve the user role
+                    string query = "SELECT Role FROM Users WHERE Username = @Username AND Password = @Password";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@Password", HashPassword(txtPassword.Text)); // Ensure passwords are hashed
+
+                    string userRole = cmd.ExecuteScalar() as string;
+
+                    if (userRole != null)
                     {
-                        MessageBox.Show($"Login successful! Welcome {result.ToString()}.");
-
-                        // Hide the login form and show the appropriate dashboard
-                        this.Hide();
-
-                        if (role == "Admin")
+                        // User exists, now check the role
+                        if (userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
                         {
+                            MessageBox.Show("Welcome Admin!");
                             AdminDashboard adminDashboard = new AdminDashboard();
                             adminDashboard.Show();
+                            this.Hide(); // Hide login form
                         }
-                        else if (role == "Supplier")
+                        else if (userRole.Equals("Supplier", StringComparison.OrdinalIgnoreCase))
                         {
-                            SupplierDashboard supplierDashboard = new SupplierDashboard(); // Assuming you have a SupplierDashboard form
+                            MessageBox.Show("Welcome Supplier!");
+                            SupplierDashboard supplierDashboard = new SupplierDashboard();
                             supplierDashboard.Show();
+                            this.Hide(); // Hide login form
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.");
+                        MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
             }
-        }
 
-        private void button2_Click(object sender, EventArgs e)
+            private void button2_Click(object sender, EventArgs e)
         {
             sign signUpForm = new sign();
             this.Hide(); // Hide the login form
