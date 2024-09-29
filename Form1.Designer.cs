@@ -55,9 +55,10 @@
             this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(603, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(457, 621);
+            this.panel1.Size = new System.Drawing.Size(605, 721);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -75,7 +76,7 @@
             this.cmbRole.FormattingEnabled = true;
             this.cmbRole.Location = new System.Drawing.Point(232, 48);
             this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(121, 24);
+            this.cmbRole.Size = new System.Drawing.Size(121, 33);
             this.cmbRole.TabIndex = 10;
             // 
             // label4
@@ -114,14 +115,14 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(86, 214);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(303, 22);
+            this.txtPassword.Size = new System.Drawing.Size(303, 30);
             this.txtPassword.TabIndex = 5;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(87, 136);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(302, 22);
+            this.txtUsername.Size = new System.Drawing.Size(302, 30);
             this.txtUsername.TabIndex = 4;
             // 
             // label3
@@ -150,7 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1056, 622);
+            this.ClientSize = new System.Drawing.Size(1206, 755);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Dairy Managment System";

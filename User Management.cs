@@ -250,7 +250,9 @@ namespace Dairy_Managment_System
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Product_Management F = new Product_Management();
+            F.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
